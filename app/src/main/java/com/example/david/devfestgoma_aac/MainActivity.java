@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(decoration);
 
 
-        //populating the recycleVidew
+        //populating the recycleView
         mAdapter = new PersonneAdapter(this,  mDb.personneDaoDao().allPersonnes());
         recyclerView.setAdapter(mAdapter);
 
