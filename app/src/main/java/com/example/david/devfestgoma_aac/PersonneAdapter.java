@@ -20,9 +20,8 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
     private Context mContext;
     private List<Personne> personnes;
 
-    public PersonneAdapter(Context mContext, List<Personne> personnes) {
+    public PersonneAdapter(Context mContext) {
         this.mContext = mContext;
-        this.personnes = personnes;
     }
 
     @NonNull
@@ -69,11 +68,17 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
 
     @Override
     public int getItemCount() {
-
+        if (personnes == null){
+            return 0;
+        }
         return personnes.size();
     }
     public List<Personne> getPersonnes(){
         return personnes;
+    }
+    public void  setPersonnes(List<Personne> persons){
+        personnes = persons;
+        notifyDataSetChanged();
     }
 
 

@@ -30,5 +30,5 @@ public abstract class AppDatabase extends RoomDatabase {
         return sInstance;
     }
 
-    public abstract PersonneDao personneDaoDao();
+    public abstract PersonneDao personneDao();
 }

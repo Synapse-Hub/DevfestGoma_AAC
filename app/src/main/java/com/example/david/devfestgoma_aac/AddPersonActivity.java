@@ -1,5 +1,6 @@
 package com.example.david.devfestgoma_aac;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -15,34 +16,28 @@ public class AddPersonActivity extends AppCompatActivity {
     private RadioGroup mGenderRadioGroup;
     private Button mSaveBtn;
 
-    private AppDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
 
-        mDb =AppDatabase.getInstance(this);
 
         mName = findViewById(R.id.name);
         mGenderRadioGroup = findViewById(R.id.gener_radioGroup);
         mSaveBtn = findViewById(R.id.save_btn);
 
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
+
         mSaveBtn.setOnClickListener(v->{
-            onSaveButtonClicked();
+           viewModel.insert(mName.getText().toString(),getGenderFromView());
+           finish();
         });
 
 
     }
 
-    public void onSaveButtonClicked() {
-        String name = mName.getText().toString();
-        String gender = getGenderFromView();
-
-        Personne personne = new Personne(name,gender);
-        mDb.personneDaoDao().insertPersonne(personne);
-        finish();
-    }
 
 
 

@@ -1,5 +1,6 @@
 package com.example.david.devfestgoma_aac;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.example.david.devfestgoma_aac.database.AppDatabase;
-import com.example.david.devfestgoma_aac.database.Personne;
-
-import java.util.List;
-
 import static android.widget.LinearLayout.VERTICAL;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton mAdd;
 
-    private AppDatabase mDb;
+
     private PersonneAdapter mAdapter;
 
     @Override
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDb = AppDatabase.getInstance(this);
+
 
         mAdd = findViewById(R.id.add_person);
         recyclerView = findViewById(R.id.recycle_view);
@@ -38,9 +34,15 @@ public class MainActivity extends AppCompatActivity {
         DividerItemDecoration decoration = new DividerItemDecoration(getApplicationContext(), VERTICAL);
         recyclerView.addItemDecoration(decoration);
 
+        mAdapter = new PersonneAdapter(this);
 
-        //populating the recycleView
-        mAdapter = new PersonneAdapter(this,  mDb.personneDaoDao().allPersonnes());
+        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.getPersonneList().observe(this,personnes -> {
+
+            mAdapter.setPersonnes(personnes);
+        });
+
+
         recyclerView.setAdapter(mAdapter);
 
 
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 // Here is where you'll implement swipe to delete
                 int position = viewHolder.getAdapterPosition();
-                mDb.personneDaoDao().deletePersonne(mAdapter.getPersonnes().get(position));
+               viewModel.deletePersonne(position);
             }
         }).attachToRecyclerView(recyclerView);
 
