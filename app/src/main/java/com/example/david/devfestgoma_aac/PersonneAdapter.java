@@ -1,9 +1,11 @@
 package com.example.david.devfestgoma_aac;
 
+import android.arch.paging.PagedListAdapter;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +16,21 @@ import com.example.david.devfestgoma_aac.database.Personne;
 
 import java.util.List;
 
-public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.PersonneViewHolder> {
+public class PersonneAdapter extends PagedListAdapter<Personne,PersonneAdapter.PersonneViewHolder> {
 
 
     private Context mContext;
     private List<Personne> personnes;
 
-    public PersonneAdapter(Context mContext) {
+    public PersonneAdapter( Context mContext) {
+        super(DIFF_CALLBACK);
         this.mContext = mContext;
     }
+
+//    public PersonneAdapter(Context mContext) {
+//        this.mContext = mContext;
+//    }
+
 
     @NonNull
     @Override
@@ -35,7 +43,9 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
 
     @Override
     public void onBindViewHolder(@NonNull PersonneViewHolder personneViewHolder, int i) {
-        Personne personne = personnes.get(i);
+        Personne personne = getItem(i);
+
+
         String name = personne.getNom();
         String sex = personne.getSex();
 
@@ -49,6 +59,22 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
 
 
     }
+    private static DiffUtil.ItemCallback<Personne> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Personne>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull Personne personne, @NonNull Personne t1) {
+                    return personne.getId() == t1.getId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull Personne personne, @NonNull Personne t1) {
+                    return personne.equals(t1);
+                }
+                // Concert details may have changed if reloaded from the database,
+                // but ID is fixed.
+
+            };
+
     private int getGenderColor(String gender) {
         int genderColor = 0;
 
@@ -66,13 +92,7 @@ public class PersonneAdapter extends RecyclerView.Adapter<PersonneAdapter.Person
     }
 
 
-    @Override
-    public int getItemCount() {
-        if (personnes == null){
-            return 0;
-        }
-        return personnes.size();
-    }
+
     public List<Personne> getPersonnes(){
         return personnes;
     }

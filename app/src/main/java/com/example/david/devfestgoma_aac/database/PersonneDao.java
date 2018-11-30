@@ -2,6 +2,7 @@ package com.example.david.devfestgoma_aac.database;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.DataSource;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -15,6 +16,9 @@ public interface PersonneDao {
 
     @Query("select * from personne")
    LiveData<List<Personne>> allPersonnes();
+
+    @Query("select * from personne")
+    DataSource.Factory<Integer,Personne> personList();
 
     @Insert
     void insertPersonne(Personne personne);
