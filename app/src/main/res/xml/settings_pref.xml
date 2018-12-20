@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/f_color_pref_entries"
+        android:entryValues="@array/f_color_pref_values"
+        android:key="@string/f_pref_color_key"
+        android:title="@string/f_pref_title" />
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/m_color_pref_entries"
+        android:entryValues="@array/m_color_pref_values"
+        android:key="@string/m_pref_color_key"
+        android:title="@string/m_pref_title" />
+</PreferenceScreen>

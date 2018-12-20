@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="m_color_pref_entries">
+        <item>@string/m_blue_color</item>
+        <item>@string/m_cyan_color</item>
+        <item>@string/m_green_color</item>
+    </string-array>
+
+    <string-array name="m_color_pref_values">
+        <item>@string/m_blue</item>
+        <item>@string/m_cyan</item>
+        <item>@string/m_green</item>
+
+    </string-array>
+
+    <string-array name="f_color_pref_entries">
+        <item>@string/f_orange_color</item>
+        <item>@string/f_pink_color</item>
+        <item>@string/f_red_color</item>
+    </string-array>
+
+    <string-array name="f_color_pref_values">
+        <item>@string/f_orange</item>
+        <item>@string/f_pink</item>
+        <item>@string/f_red</item>
+    </string-array>
+</resources>

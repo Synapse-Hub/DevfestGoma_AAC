@@ -1,8 +1,11 @@
 package com.example.david.devfestgoma_aac;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -22,10 +25,15 @@ public class AddPersonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
 
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
 
         mName = findViewById(R.id.name);
         mGenderRadioGroup = findViewById(R.id.gener_radioGroup);
         mSaveBtn = findViewById(R.id.save_btn);
+        findViewById(R.id.masculin_rb).setBackgroundColor(Color.parseColor(preferences.getString(getString(R.string.m_pref_color_key),getString(R.string.m_blue))));
+        findViewById(R.id.feminin_rb).setBackgroundColor(Color.parseColor(preferences.getString(getString(R.string.f_pref_color_key),getString(R.string.f_orange))));
 
         MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 

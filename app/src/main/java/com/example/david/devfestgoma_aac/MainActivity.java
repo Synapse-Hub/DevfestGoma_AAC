@@ -11,6 +11,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.david.devfestgoma_aac.database.Personne;
 
@@ -78,8 +81,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
 
+            startActivity(new Intent(this,SettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings,menu);
+        return true;
     }
 }

@@ -20,6 +20,7 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         mDb = AppDatabase.getInstance(this.getApplication());
+
         personneList = new LivePagedListBuilder<>(mDb.personneDao().personList(),20).build();
     }
 

@@ -2,4 +2,26 @@
     <string name="app_name">DevfestGoma_AAC</string>
     <string name="feminin">Feminin</string>
     <string name="masculin">Masculin</string>
+
+    <string name="m_blue_color">Blue</string>
+    <string name="m_green_color">Green</string>
+    <string name="m_cyan_color">Cyan</string>
+
+    <string name="f_red_color">Red</string>
+    <string name="f_orange_color">Orange</string>
+    <string name="f_pink_color">Pink</string>
+    <string name="f_pref_title">Color for femal</string>
+    <string name="m_pref_title">Color for male</string>
+    <string name="settings">settings</string>
+    <string name="f_pref_color_key">f_color_list_pref</string>
+    <string name="m_pref_color_key">m_color_list_pref</string>
+
+
+    <string name="f_red">#F44336</string>
+    <string name="f_pink">#E91E63</string>
+    <string name="f_orange">#FF9800</string>
+
+    <string name="m_blue">#0c344b</string>
+    <string name="m_cyan">#00BCD4</string>
+    <string name="m_green">#4CAF50</string>
 </resources>

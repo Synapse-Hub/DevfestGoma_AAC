@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/masculin_color"
+
             android:text="@string/masculin"
             android:textColor="#fff" />
 
@@ -50,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/feminin_color"
             android:checked="true"
             android:text="@string/feminin"
             android:textColor="#fff" />

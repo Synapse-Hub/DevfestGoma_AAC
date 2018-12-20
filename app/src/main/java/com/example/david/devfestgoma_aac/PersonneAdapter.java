@@ -2,9 +2,12 @@ package com.example.david.devfestgoma_aac;
 
 import android.arch.paging.PagedListAdapter;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,14 +79,18 @@ public class PersonneAdapter extends PagedListAdapter<Personne,PersonneAdapter.P
             };
 
     private int getGenderColor(String gender) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         int genderColor = 0;
 
         switch (gender) {
             case "Masculin":
-                genderColor = ContextCompat.getColor(mContext, R.color.masculin_color);
+                genderColor = Color.parseColor(preferences.getString
+                        (mContext.getString(R.string.m_pref_color_key),mContext.getString(R.string.m_blue)));
                 break;
             case "Feminin":
-                genderColor = ContextCompat.getColor(mContext, R.color.feminin_color);
+                genderColor = Color.parseColor(preferences.getString(
+                        mContext.getString(R.string.f_pref_color_key),mContext.getString(R.string.f_orange)));
                 break;
             default:
                 break;
